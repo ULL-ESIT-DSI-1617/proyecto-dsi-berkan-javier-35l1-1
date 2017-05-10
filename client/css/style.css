@@ -1,26 +1,77 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:100);
 @import url(http://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
+@font-face {
+  font-family: "bodyfont";
+  src: url("../fonts/ARCADECLASSIC.ttf");
+}
+
+@font-face {
+  font-family: "gametitle";
+  src: url("../fonts/PAC-FONT.TTF");
+}
+
+footer a {
+    color: white;
+}
+
+.img-footer {
+    width: 20px;
+    height: 20px;
+    padding-left: 3px;
+
+    vertical-align: middle;
+}
+
 body {
+  font-family: "bodyfont";
   color: white;
   background-image: url("../img/wallpaper-loginregisterpass.jpg");
   background-position: center -180px;
-  font-family: 'Roboto';
+}
+
+.footer-below {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  background-color: #5e2129;
+}
+
+#title {
+  text-align: center;
+  padding-top: 20px;
+  width: 100%;
+  height: 87px;
+  background-color: #5e2129;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  color: white;
+  text-shadow: -2px -2px 2px black, 2px -2px 2px black, -2px 2px 2px black, 2px 2px 2px black;
+}
+
+#title h1 {
+  font-family: bodyfont;
+  font-size: 64px;
 }
 
 .loginregisterpass-form {
   opacity: 0.6;
   position: relative;
   float: center;
-  margin:0 auto;
-  top: 270px;
+  margin: 0 auto;
+  top: 135px;
   max-width: 513px;
-  height: 305px;
+  height: 330px;
   background: #100BB0;
-  border-color: black;
-  border-radius: 4px;
-  font-family: 'Roboto';
-  border-style: solid;
-  border-color: black;
+  border-radius: 11px 11px 11px 11px;
+  -moz-border-radius: 11px 11px 11px 11px;
+  -webkit-border-radius: 11px 11px 11px 11px;
+  border: 4px solid #000000;
+  font-family: "bodyfont";
 }
 
 .tabs {
