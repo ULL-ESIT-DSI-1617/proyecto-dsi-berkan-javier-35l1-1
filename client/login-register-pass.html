@@ -36,19 +36,19 @@
       </ul>
       <div id="login" class="form-action show">
         <h1>Login</h1>
-        <p>
-
-        </p>
         <form>
           <ul>
             <li>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Email" id="emaillogin" />
             </li>
             <li>
-              <input type="password" placeholder="Password" />
+              <input type="text" placeholder="Username" id="username" />
             </li>
             <li>
-              <input type="submit" value="Login" class="button" />
+              <input type="password" placeholder="Password" id="passwordlogin" />
+            </li>
+            <li>
+              <input type="submit" value="Login" class="button" onclick="checkfields_login()" />
             </li>
           </ul>
         </form>
@@ -56,29 +56,23 @@
       <!--/#login.form-action-->
       <div id="register" class="form-action hide">
         <h1>Register</h1>
-        <p>
-
-        </p>
         <form>
           <ul>
             <li>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Email" id="emailregister" />
             </li>
             <li>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" id="passwordregister"/>
             </li>
             <li>
-              <input type="submit" value="Sign Up" class="button" />
+              <input type="submit" value="Sign Up" class="button" onclick="checkfields_register()"/>
             </li>
           </ul>
         </form>
       </div>
       <!--/#register.form-action-->
       <div id="reset" class="form-action hide">
-        <h1>Change Password</h1>
-        <p>
-
-        </p>
+        <h1>ChangePassword</h1>
         <form>
           <ul>
             <li>
@@ -96,7 +90,7 @@
           </ul>
         </form>
       </div>
-      <!--/#register.form-action-->
+      <!--/#changepassword.form-action-->
     </div>
   </div>
 
@@ -106,6 +100,7 @@
 
 <!-- JS
 ================================================== -->
-<script src="js/tabs.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="js/tabs.js"></script>
+<script type="text/javascript" src="js/tabs.js"></script>
+<script type="text/javascript" src="js/validfields.js"></script>
+

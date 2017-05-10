@@ -8,12 +8,13 @@ body {
 }
 
 .loginregisterpass-form {
-  position: relative;
   opacity: 0.6;
-  width: 513px;
-  height: 297px;
-  margin-top: 270px;
-  margin-left: 463px;
+  position: relative;
+  float: center;
+  margin:0 auto;
+  top: 270px;
+  max-width: 513px;
+  height: 305px;
   background: #100BB0;
   border-color: black;
   border-radius: 4px;
