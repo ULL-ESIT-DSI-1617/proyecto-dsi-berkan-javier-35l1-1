@@ -18,7 +18,6 @@ footer a {
     width: 20px;
     height: 20px;
     padding-left: 3px;
-
     vertical-align: middle;
 }
 
@@ -26,7 +25,7 @@ body {
   font-family: "bodyfont";
   color: white;
   background-image: url("../img/wallpaper-loginregisterpass.jpg");
-  background-position: center -180px;
+  background-position: center 0px;
 }
 
 .footer-below {
@@ -38,7 +37,8 @@ body {
   color: white;
   border: 3px solid black;
   border-radius: 0.4em;
-  background-color: #5e2129;
+  background-color: rgb(116,34,27);
+  font-family: "bodyfont";
 }
 
 #title {
@@ -58,18 +58,18 @@ body {
   font-size: 64px;
 }
 
-.loginregisterpass-form {
+.screen-div {
   opacity: 0.6;
   position: relative;
   float: center;
   margin: 0 auto;
-  top: 135px;
-  max-width: 513px;
-  height: 330px;
+  top: 205px;
+  max-width: 790px;
+  height: 400px;
   background: #100BB0;
-  border-radius: 11px 11px 11px 11px;
-  -moz-border-radius: 11px 11px 11px 11px;
-  -webkit-border-radius: 11px 11px 11px 11px;
+  border-radius: 50px 50px 50px 50px;
+  -moz-border-radius: 50px 50px 50px 50px;
+  -webkit-border-radius: 50px 50px 50px 50px;
   border: 4px solid #000000;
   font-family: "bodyfont";
 }
@@ -84,7 +84,9 @@ body {
   padding: 0;
   list-style-type: none;
   background: #c0392b;
-  border-radius: 4px;
+  border-radius: 50px 50px 0px 50px;
+  -moz-border-radius: 50px 50px 0px 50px;
+  -webkit-border-radius: 50px 50px 0px 50px;
 }
 
 .tabs li {
@@ -143,7 +145,7 @@ form {
 }
 
 form input[type=text], form input[type=password], form input[type=submit] {
-  font-family: 'Roboto';
+  font-family: bodyfont;
 }
 
 form input[type=text], form input[type=password] {
@@ -151,10 +153,11 @@ form input[type=text], form input[type=password] {
   height: 40px;
   margin-bottom: 10px;
   padding-left: 15px;
-  color: #e74c3c;
+  color: black;
   border: none;
   outline: none;
   background: #fff;
+  
 }
 
 .dark-box {
@@ -211,18 +214,110 @@ form input[type=text], form input[type=password] {
 
 ::-webkit-input-placeholder {
   color: #e74c3c;
+  font-family: bodyfont;
 }
 
 :-moz-placeholder {
   /* Firefox 18- */
   color: #e74c3c;
+  font-family: bodyfont;
 }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #e74c3c;
+  font-family: bodyfont;
 }
 
 :-ms-input-placeholder {
   color: #e74c3c;
+  font-family: bodyfont;
+}
+
+.navbar-custom {
+  background: black;
+  font-family: bodyfont;
+  border: 2px solid #000;
+}
+
+.navbar-custom h2{
+  font-size: 30px;
+}
+
+.navbar-custom h1{
+  font-size: 54px;
+  text-align: center;
+}
+
+.navbar-custom a:focus {
+  outline: none;
+}
+.navbar-custom .navbar-brand {
+  color: rgb(254,193,49);
+  text-shadow: -1px -1px 1px white, 1px -1px 1px white, -1px 1px 1px white, 1px 1px 1px white;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand.active {
+  color: rgb(142,36,21);
+}
+.navbar-custom .navbar-nav {
+  letter-spacing: 1px;
+}
+.navbar-custom .navbar-nav li a {
+  color: rgb(142,36,21);
+}
+.navbar-custom .navbar-nav li a:hover {
+  color: blue;
+  outline: none;
+}
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active {
+  color: blue;
+}
+.navbar-custom .navbar-nav li.active a {
+  color: black;
+  background: red;
+  border: 2px solid #000;
+}
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus,
+.navbar-custom .navbar-nav li.active a:active {
+  color: black;
+  background: black;
+  border: 2px solid black;
+}
+.navbar-custom .navbar-toggle {
+  color: white;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-color: black;
+
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: rgb(10,7,107);
+  color: white;
+  border: 2px solid black;
+}
+@media (min-width: 768px) {
+  .navbar-custom {
+    padding: 25px 0;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+  .navbar-custom .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .navbar-custom.affix {
+    padding: 10px 0;
+  }
+  .navbar-custom.affix .navbar-brand {
+    font-size: 1.5em;
+  }
 }
