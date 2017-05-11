@@ -11,14 +11,14 @@
     "url": "git+https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1.git"
   },
   "contributors": [
-  {
-    "name": "Berkan Reyes Hernández",
-    "url": "https://github.com/berkanrhdz"
-  },
-  {
-    "name": "Javier Antonio González Hernández",
-    "url": "https://github.com/berkanrhdz"
-  }
+    {
+      "name": "Berkan Reyes Hernández",
+      "url": "https://github.com/berkanrhdz"
+    },
+    {
+      "name": "Javier Antonio González Hernández",
+      "url": "https://github.com/berkanrhdz"
+    }
   ],
   "author": "",
   "license": "ISC",
@@ -30,10 +30,11 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
-    "express": "^4.15.2",
+    "cookie-session": "^2.0.0-beta.1",
+    "express": "^4.14.0",
     "express-session": "^1.15.1"
   },
   "engines": {
-  "node": "7.1.0"
+    "node": "7.1.0"
   }
 }

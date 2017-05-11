@@ -52,19 +52,19 @@
       </ul>
       <div id="login" class="form-action show">
         <h1>Login</h1>
-        <form>
+        <form method="post" action="/login" onsubmit="javascript: return checkfields_login();">
           <ul>
             <li>
-              <input type="text" placeholder="Email" id="emaillogin" />
+              <input type="text" placeholder="Email" id="emaillogin" name="email" />
             </li>
             <li>
               <input type="text" placeholder="Username" id="username" />
             </li>
             <li>
-              <input type="password" placeholder="Password" id="passwordlogin" />
+              <input type="password" placeholder="Password" id="passwordlogin" name="password" />
             </li>
             <li>
-              <input type="submit" value="Login" class="button" onclick="checkfields_login()" />
+              <input type="submit" value="Login" class="button" />
             </li>
           </ul>
         </form>
@@ -72,16 +72,16 @@
       <!--/#login.form-action-->
       <div id="register" class="form-action hide">
         <h1>Register</h1>
-        <form>
+        <form method="post" action="/register" onsubmit="javascript: return checkfields_register();">
           <ul>
             <li>
-              <input type="text" placeholder="Email" id="emailregister" />
+              <input type="text" placeholder="Email" id="emailregister" name="email" />
             </li>
             <li>
-              <input type="password" placeholder="Password" id="passwordregister" />
+              <input type="password" placeholder="Password" id="passwordregister" name="password" />
             </li>
             <li>
-              <input type="submit" value="Sign Up" class="button" onclick="checkfields_register()" />
+              <input type="submit" value="Sign Up" class="button" />
             </li>
           </ul>
         </form>
