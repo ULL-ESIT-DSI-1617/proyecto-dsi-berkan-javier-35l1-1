@@ -89,16 +89,16 @@
       <!--/#register.form-action-->
       <div id="reset" class="form-action hide">
         <h1>ChangePassword</h1>
-        <form>
+        <form method="post" action="/changepassword" >
           <ul>
             <li>
-              <input type="text" placeholder="Email" />
+              <input type="text" placeholder="Email" name="email" />
             </li>
             <li>
-              <input type="password" placeholder="Old Password" />
+              <input type="password" placeholder="Old Password" name="oldpassword" />
             </li>
             <li>
-              <input type="password" placeholder="New Password" />
+              <input type="password" placeholder="New Password" name="newpassword" />
             </li>
             <li>
               <input type="submit" value="Change" class="button" />

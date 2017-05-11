@@ -61,6 +61,21 @@ app.post('/register', function (req,res){
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
+//CHANGES PASSWORD IN USERS.JSON FILE.
+app.post('/changepassword', function (req,res){
+  var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+  var obj = require('./users.json');
+  obj[req.body.email] = bcrypt.hashSync(req.body.newpassword);
+  if(req.body.email=json  &&
+                bcrypt.compareSync(req.body.oldpassword, json[req.body.email])) {
+    fs.writeFile('./users.json', JSON.stringify(obj,"",4), function(err) { console.log(err);
+    })
+    res.redirect('/login')
+  } else {
+    res.redirect('/changepassword')
+  }
+});
+
 app.get('/', function(req, res) {
   res.redirect('/login')
 });
