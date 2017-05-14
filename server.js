@@ -76,6 +76,10 @@ app.post('/changepassword', function (req,res){
   }
 });
 
+app.post('/logout', function (req,res){
+  res.redirect('/login')
+});
+
 app.get('/', function(req, res) {
   res.redirect('/login')
 });
@@ -85,6 +89,11 @@ app.get('/game',
 );
 
 app.get('/login', function(req, res) {
+  res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
+});
+
+app.get('/logout', function (req, res) {
+  req.session.destroy();
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
