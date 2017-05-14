@@ -47,13 +47,13 @@
           </li>
 
           <li class="page-scroll">
-            <a href="#portfolio">Nueva Partida</a>
+            <a href="#" onclick="runGame(GAME_LEVELS, CanvasDisplay);">Nueva Partida</a>
           </li>
           <li class="page-scroll">
-            <a href="#proyects">Continuar Partida</a>
+            <a href="#">Puntuaciones</a>
           </li>
           <li class="page-scroll">
-            <a href="#contact">Puntuaciones</a>
+            <a href="#">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
@@ -63,11 +63,9 @@
   </nav>
 
   <div class="container">
-    <div class="screen-div">
-
-    </div>
+  
+      <div class="screen-div" id="screen"></div>
   </div>
-
 </body>
 
 <footer>
@@ -87,6 +85,7 @@
 
 <!-- JS
 ================================================== -->
+<script type="text/javascript" src="js/puntuations.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
