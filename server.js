@@ -65,12 +65,24 @@ var auth = function(req, res, next) {
 };
 
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
+//SAVES LOGIN USERS IN MONGODB.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+  var aux = req.body.email;
   if (req.body.email = json &&
     bcrypt.compareSync(req.body.password, json[req.body.email])) {
     req.session.user = req.body.email;
     req.session.admin = true;
+    var loginuser = new LoginUser({
+      email: aux,
+      username: req.body.username,
+      password: bcrypt.hashSync(req.body.password),
+      date: Date.now()
+    });
+    loginuser.save(function(err, doc) {
+      if (err) throw err; 
+      console.log('User saved successfully!');
+    });
     res.redirect('/game')
   } else {
     res.redirect('/login')
