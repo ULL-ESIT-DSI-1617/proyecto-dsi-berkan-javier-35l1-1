@@ -6,10 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var bcrypt = require("bcrypt-nodejs");
+var mongoose = require('mongoose');
 var path = require('path');
 var util = require("util");
 var fs = require("fs");
 
+//CONNECT MONGODB
+mongoose.connect('mongodb://localhost/test', (err)=> {
+  if(err) {
+    console.log("Error: Check if mongod is running!!");
+    console.log(err);
+    throw err;
+  }
+  console.log("Connected to MongoDB");
+});
 
 //ENABLES MIDDLEWARES.
 app.use(bodyParser.urlencoded({
@@ -23,12 +33,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-
-app.use(function(req, res, next) {
-  console.log("Cookies :  "+util.inspect(req.cookies));
-  console.log("session :  "+util.inspect(req.session));
-  next();
-});
 
 //CREATES AUTHENTICATION FUNCTION IN WHICH IT IS MADE next() ONLY IF THE LOGIN IS CORRECT.
 var auth = function(req, res, next) {
