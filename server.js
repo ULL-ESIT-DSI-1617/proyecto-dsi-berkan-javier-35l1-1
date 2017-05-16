@@ -11,7 +11,7 @@ var path = require('path');
 var util = require("util");
 var fs = require("fs");
 
-//CONNECT MONGODB
+//CONNECTS MONGODB.
 mongoose.connect('mongodb://localhost/test', (err)=> {
   if(err) {
     console.log("Error: Check if mongod is running!!");
@@ -20,6 +20,14 @@ mongoose.connect('mongodb://localhost/test', (err)=> {
   }
   console.log("Connected to MongoDB");
 });
+
+//CREATES SCHEMA AND MODEL FOR USERS LOGS.
+var UsersLogSchema = mongoose.Schema({
+   email: {type: String, required: true},
+   username: {type: String, required: true},
+   password: {type: String, required: true}
+});
+var UsersLogModel = mongoose.model('UsersLog', UsersLogSchema);
 
 //ENABLES MIDDLEWARES.
 app.use(bodyParser.urlencoded({
