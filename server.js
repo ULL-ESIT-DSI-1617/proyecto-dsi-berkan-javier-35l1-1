@@ -7,13 +7,14 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var bcrypt = require("bcrypt-nodejs");
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var path = require('path');
 var util = require("util");
 var fs = require("fs");
 
 //CONNECTS MONGODB.
-mongoose.connect('mongodb://localhost/test', (err)=> {
-  if(err) {
+mongoose.connect('mongodb://localhost/loginusers', (err) => {
+  if (err) {
     console.log("Error: Check if mongod is running!!");
     console.log(err);
     throw err;
@@ -21,13 +22,26 @@ mongoose.connect('mongodb://localhost/test', (err)=> {
   console.log("Connected to MongoDB");
 });
 
-//CREATES SCHEMA AND MODEL FOR USERS LOGS.
-var UsersLogSchema = mongoose.Schema({
-   email: {type: String, required: true},
-   username: {type: String, required: true},
-   password: {type: String, required: true}
+//CREATES SCHEMA AND MODEL FOR LOGIN USERS.
+var LoginUsersSchema = new Schema({
+  email: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
-var UsersLogModel = mongoose.model('UsersLog', UsersLogSchema);
+var LoginUser = mongoose.model('LoginUser', LoginUsersSchema);
 
 //ENABLES MIDDLEWARES.
 app.use(bodyParser.urlencoded({
@@ -44,9 +58,9 @@ app.use(session({
 
 //CREATES AUTHENTICATION FUNCTION IN WHICH IT IS MADE next() ONLY IF THE LOGIN IS CORRECT.
 var auth = function(req, res, next) {
-  if (req.session.admin)
+  if (req.session.admin) {
     res.sendfile(path.join(__dirname + '/client/index.html'))
-  else
+  } else
     res.redirect('/login');
 };
 
@@ -64,23 +78,24 @@ app.post('/login', function(req, res) {
 });
 
 //WRITES NEW USERS IN USERS.JSON.
-app.post('/register', function (req,res){
+app.post('/register', function(req, res) {
   var obj = require('./users.json');
   obj[req.body.email] = bcrypt.hashSync(req.body.password);
-  fs.writeFile('./users.json', JSON.stringify(obj,"",4), function(err) {
+  fs.writeFile('./users.json', JSON.stringify(obj, "", 4), function(err) {
     console.log(err);
   })
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
 //CHANGES PASSWORD IN USERS.JSON FILE.
-app.post('/changepassword', function (req,res){
+app.post('/changepassword', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
   var obj = require('./users.json');
   obj[req.body.email] = bcrypt.hashSync(req.body.newpassword);
-  if(req.body.email=json  &&
-                bcrypt.compareSync(req.body.oldpassword, json[req.body.email])) {
-    fs.writeFile('./users.json', JSON.stringify(obj,"",4), function(err) { console.log(err);
+  if (req.body.email = json &&
+    bcrypt.compareSync(req.body.oldpassword, json[req.body.email])) {
+    fs.writeFile('./users.json', JSON.stringify(obj, "", 4), function(err) {
+      console.log(err);
     })
     res.redirect('/login')
   } else {
@@ -88,7 +103,7 @@ app.post('/changepassword', function (req,res){
   }
 });
 
-app.post('/logout', function (req,res){
+app.post('/logout', function(req, res) {
   res.redirect('/login')
 });
 
@@ -97,14 +112,14 @@ app.get('/', function(req, res) {
 });
 
 app.get('/game',
-    auth 
+  auth
 );
 
 app.get('/login', function(req, res) {
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
-app.get('/logout', function (req, res) {
+app.get('/logout', function(req, res) {
   req.session.destroy();
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
