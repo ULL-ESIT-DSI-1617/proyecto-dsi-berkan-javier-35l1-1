@@ -81,7 +81,13 @@
         } else if (n < plans.length - 1)
           startLevel(n + 1);
         else
-          console.log("You win!");
+          var elem = document.getElementById('canvasgame');
+          if (elem) elem.remove();
+          var screendiv = document.getElementById('screen');
+          var gameover = document.createElement("h1");
+          gameover.id = 'gameover'
+          var textgameover = document.createTextNode('YOU WIN, CONGRATS');
+          gameover.appendChild(textgameover);
       });
     }
     startLevel(0);
