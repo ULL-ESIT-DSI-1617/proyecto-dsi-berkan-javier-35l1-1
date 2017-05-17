@@ -2,8 +2,11 @@ class CanvasDisplay {
     
     constructor(parent, level) {
         this.scale = 20;
+        var elem = document.getElementById("canvasgame");
+        if (elem) elem.remove();
         let node = document.getElementById('screen');
         this.canvas = document.createElement("canvas");
+        this.canvas.id = "canvasgame";
         this.canvas.width = Math.min(590, level.width * this.scale);
         this.canvas.height = Math.min(392, level.height * this.scale);
         node.appendChild(this.canvas);
