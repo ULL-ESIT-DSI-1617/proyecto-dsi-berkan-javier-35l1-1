@@ -2,8 +2,12 @@ class CanvasDisplay {
     
     constructor(parent, level) {
         this.scale = 20;
-        var elem = document.getElementById("canvasgame");
+        let elem = document.getElementById("canvasgame");
+        let gameovertext = document.getElementById('gameover');
+        let insertcointext = document.getElementById('insertcoin');
         if (elem) elem.remove();
+        if (gameovertext) gameovertext.remove();
+        if (insertcointext) insertcointext.remove();
         let node = document.getElementById('screen');
         this.canvas = document.createElement("canvas");
         this.canvas.id = "canvasgame";
