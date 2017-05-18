@@ -63,6 +63,6 @@ class Player {
 }
 exports.Player = Player;
 
-})(this);
+})(self);
 
 

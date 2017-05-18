@@ -28,4 +28,4 @@ class Lava {
 
 exports.Lava = Lava;
 
-})(this);
+})(self);

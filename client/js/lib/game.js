@@ -96,4 +96,4 @@
   }
 
   exports.runGame = runGame;
-})(this);
+})(self);

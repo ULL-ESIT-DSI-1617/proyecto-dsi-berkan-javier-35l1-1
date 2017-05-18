@@ -113,4 +113,4 @@ class Level {
     }
 }
 exports.Level = Level;
-})(this);
+})(self);

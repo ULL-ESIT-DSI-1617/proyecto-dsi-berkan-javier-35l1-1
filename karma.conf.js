@@ -46,6 +46,21 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'client/js/lib/vector.js': ['babel'],
+      'client/js/lib/canvas.js': ['babel'],
+      'client/js/lib/coin.js': ['babel'],
+      'client/js/lib/player.js': ['babel'],
+      'client/js/lib/lava.js': ['babel'],
+      'client/js/lib/level.js': ['babel'],
+      'client/js/lib/game.js': ['babel'],
+      'client/js/lib/game_levels.js': ['babel'],
+      'test/tests.js': ['babel']
+    },
+    babelPreprocessor: {
+      options: {
+        presets: ['es2015'],
+        sourceMap: 'inline'
+      }
     },
 
 

@@ -16,5 +16,5 @@ class Coin {
     }
 }
 exports.Coin = Coin;
-})(this);
+})(self);
 

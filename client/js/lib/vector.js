@@ -14,4 +14,4 @@ class Vector {
     }
 }
 exports.Vector = Vector;
-})(this);
+})(self);
