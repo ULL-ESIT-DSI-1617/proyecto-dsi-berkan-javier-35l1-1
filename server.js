@@ -115,10 +115,6 @@ app.post('/changepassword', function(req, res) {
   }
 });
 
-app.post('/logout', function(req, res) {
-  res.redirect('/login')
-});
-
 app.get('/', function(req, res) {
   res.redirect('/login')
 });
