@@ -147,10 +147,9 @@ class CanvasDisplay {
     }
 
     showLiveAndScore(lives) {
-        var player = this.level.player;
         this.cx.fillStyle="rgb(59,59,59)";
         this.cx.font="bold 20px Arial";
         this.cx.fillText("Lives: " + lives, this.canvas.width - 120, 20);
-        this.cx.fillText("Score: " + player.score, this.canvas.width - 120, 40);
+        this.cx.fillText("Score: " + score, this.canvas.width - 120, 40);
     }
 }

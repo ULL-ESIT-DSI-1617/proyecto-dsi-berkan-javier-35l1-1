@@ -62,6 +62,7 @@
         if (status == "lost") {
           if (lives === 0) {
             n = 0;
+            score = 0;
             lives = 3;
             var elem = document.getElementById('canvasgame');
             if (elem) elem.remove();

@@ -1,3 +1,5 @@
+var score = 0;
+
 (function(exports) {
 class Player {
     constructor(pos) {
@@ -5,7 +7,6 @@ class Player {
         this.size = new Vector(0.8, 1.5);
         this.speed = new Vector(0, 0);
         this.type = "player";
-        this.score = 0;
     }
 
     moveX(step, level, keys) {
@@ -51,7 +52,7 @@ class Player {
         var otherActor = level.actorAt(this);
         if (otherActor)
             if(level.playerTouched(otherActor.type, otherActor))
-                this.score+=50;
+                score+=50;
                 
         // Losing animation
         if (level.status == "lost") {
