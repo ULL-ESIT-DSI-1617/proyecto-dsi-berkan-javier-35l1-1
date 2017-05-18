@@ -145,4 +145,10 @@ class CanvasDisplay {
             }
         }, this);
     }
+
+    showLiveAndScore(lives) {
+        this.cx.fillStyle="rgb(59,59,59)";
+        this.cx.font="bold 20px Arial";
+        this.cx.fillText("Lives: " + lives, this.canvas.width - 100, 20);
+    }
 }

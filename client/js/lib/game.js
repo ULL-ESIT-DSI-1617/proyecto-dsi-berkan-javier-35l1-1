@@ -43,6 +43,7 @@
     runAnimation(function(step) {
       level.animate(step, arrows);
       display.drawFrame(step);
+      display.showLiveAndScore(lives);
       if (level.isFinished()) {
         display.clear();
         if (level.status == "lost") {
