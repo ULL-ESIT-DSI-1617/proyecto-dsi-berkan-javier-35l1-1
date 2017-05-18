@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "testkarma": "./node_modules/karma/bin/karma start --single-run",
+    "testmocha": "./node_modules/mocha/bin/mocha --require should"
   },
   "repository": {
     "type": "git",
