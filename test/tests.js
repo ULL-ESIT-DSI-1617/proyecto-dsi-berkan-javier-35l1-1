@@ -14,6 +14,7 @@ var customLevel = ["           ",
                     "xxx       x"]
 
 var aLevel = new Level(customLevel);
+
 describe("Level", function() {
     describe("Measurements", function() {
         it("Check the level's width", function() {
@@ -37,3 +38,12 @@ describe("Level", function() {
     });    
 });
 
+var Turko = new Player(new Vector(0,0));
+
+describe("Player", function() {
+    describe("Movement", function() {
+        it("Check if the player can move horizontally", function() {
+            expect(Turko).to.have.property("moveX");
+        });
+    });
+});
