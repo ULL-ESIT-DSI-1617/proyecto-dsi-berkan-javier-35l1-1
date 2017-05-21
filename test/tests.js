@@ -15,9 +15,12 @@ var customLevel = ["           ",
 
 var aLevel = new Level(customLevel);
 describe("Level", function() {
-    describe("Width", function() {
+    describe("Measurements", function() {
         it("Check the level's width", function() {
             expect(aLevel.width).to.equal(customLevel[0].length);
+        });
+        it("Check the level's height", function() {
+            expect(aLevel.height).to.equal(customLevel.length);
         });
     });    
 });
