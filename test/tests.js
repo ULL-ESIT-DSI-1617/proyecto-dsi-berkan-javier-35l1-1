@@ -45,5 +45,9 @@ describe("Player", function() {
         it("Check if the player can move horizontally", function() {
             expect(Turko).to.have.property("moveX");
         });
+
+        it("Check if the player can move vertically", function() {
+            expect(Turko).to.have.property("moveY");
+        });
     });
 });
