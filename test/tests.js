@@ -27,6 +27,13 @@ describe("Level", function() {
         it("Check if the level has a player", function() {
             expect(aLevel.player).to.be.an.instanceof(Player);
         });
+
+        it("Check if the level has at least a coin", function() {
+            let coin = this.actors.filter(function(actor) {
+                return actor.type == "coin";
+            })[0];
+            expect(coin[0]).to.be.an.instanceof(Coin);
+        });
     });    
 });
 
