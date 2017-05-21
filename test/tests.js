@@ -22,6 +22,11 @@ describe("Level", function() {
         it("Check the level's height", function() {
             expect(aLevel.height).to.equal(customLevel.length);
         });
+    });
+    describe("Level's Content", function() {
+        it("Check if the level has a player", function() {
+            expect(aLevel.player).to.be.an.instanceof(Player);
+        });
     });    
 });
 
