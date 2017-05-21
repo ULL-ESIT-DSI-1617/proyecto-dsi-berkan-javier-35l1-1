@@ -30,7 +30,7 @@ describe("Level", function() {
         });
 
         it("Check if the level has at least a coin", function() {
-            let coin = this.actors.filter(function(actor) {
+            let coin = aLevel.actors.filter(function(actor) {
                 return actor.type == "coin";
             })[0];
             expect(coin[0]).to.be.an.instanceof(Coin);
