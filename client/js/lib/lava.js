@@ -1,4 +1,10 @@
 (function(exports) {
+/**
+ * Represent Lava
+ * @constructor
+ * @param {Vector} pos - The pos of the Lava
+ * @param {String} ch - The type of Lava
+ */
 class Lava {
     constructor(pos, ch) {
         this.pos = pos;
@@ -14,7 +20,11 @@ class Lava {
             this.repeatPos = pos;
         }
     }
-
+    /**
+     * It computes a new position by adding the product of the time step and its current speed to  * its old position.
+     * @param {Number} step - The time step in seconds
+     * @param {Level} level - The level object
+     */
     act(step, level) {
         var newPos = this.pos.plus(this.speed.times(step));
         if (!level.obstacleAt(newPos, this.size))
