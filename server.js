@@ -12,6 +12,8 @@ var path = require('path');
 var util = require("util");
 var fs = require("fs");
 
+var user;
+
 //CONNECTS MONGODB.
 mongoose.connect('mongodb://localhost/loginusers', (err) => {
   if (err) {
@@ -39,6 +41,10 @@ var LoginUsersSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  score: {
+    type: Number,
+    required: true
   }
 });
 var LoginUser = mongoose.model('LoginUser', LoginUsersSchema);
@@ -64,11 +70,32 @@ var auth = function(req, res, next) {
     res.redirect('/login');
 };
 
+// -------------SCORE------------
+app.post("/submitScore", function(req, res) {
+  if(!req.body.score) {
+    res.send({error:"No score value was submitted"});
+    return;
+  }
+  var score = parseInt(req.body.score);
+  LoginUser.findOne({ username: user }, function(err, user) {
+    if (err) 
+      throw err;
+    user.score = score;
+    // save the user
+    user.save(function(err) {
+      if (err) throw err;
+      console.log("User successfully updated!");
+    });
+    res.send({success:true});
+  });
+});
+
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
 //SAVES LOGIN USERS IN MONGODB.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
   var aux = req.body.email;
+  user = req.body.username;
   if (req.body.email = json &&
     bcrypt.compareSync(req.body.password, json[req.body.email])) {
     req.session.user = req.body.email;
@@ -77,6 +104,7 @@ app.post('/login', function(req, res) {
       email: aux,
       username: req.body.username,
       password: bcrypt.hashSync(req.body.password),
+      score: 0,
       date: Date.now()
     });
     loginuser.save(function(err, doc) {
@@ -85,7 +113,7 @@ app.post('/login', function(req, res) {
     });
     res.redirect('/game')
   } else {
-    res.redirect('/login')
+      res.redirect('/login')
   }
 });
 
