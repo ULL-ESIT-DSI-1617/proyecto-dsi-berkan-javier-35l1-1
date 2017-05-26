@@ -22,6 +22,21 @@
     addEventListener("keyup", handler);
     return pressed;
   }
+
+  // ---------------SCORE------------------------
+  var submitScore = function(score) {
+    $.post("http://localhost:8090/submitScore", {score:score}, function(data) {
+      if(!data) {
+        console.log("Server Communication Error");
+        return;
+      }
+      if(data.error)
+      {
+        console.log("Server Error: " + data.error);
+        return;
+      }
+    });
+  };
   /**
    * Wrap requestAnimationFrame
    * @param {} frameFunc 
@@ -81,7 +96,6 @@
         if (status == "lost") {
           if (lives === 0) {
             n = 0;
-            score = 0;
             lives = 3;
             var elem = document.getElementById('canvasgame');
             if (elem) elem.remove();
@@ -96,6 +110,8 @@
             insertcoin.appendChild(textinsertcoin);
             screendiv.appendChild(gameover);
             gameover.appendChild(insertcoin);
+            submitScore(score);
+            score = 0;
             return;
           }
           startLevel(n);
