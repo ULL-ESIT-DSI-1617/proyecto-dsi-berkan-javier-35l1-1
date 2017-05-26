@@ -12,7 +12,7 @@ var path = require('path');
 var util = require("util");
 var fs = require("fs");
 
-var user;
+var loggedInUser;
 
 //CONNECTS MONGODB.
 mongoose.connect('mongodb://localhost/loginusers', (err) => {
@@ -77,7 +77,7 @@ app.post("/submitScore", function(req, res) {
     return;
   }
   var score = parseInt(req.body.score);
-  LoginUser.findOne({ username: user }, function(err, user) {
+  LoginUser.findOne({ username: loggedInUser }, function(err, user) {
     if (err) 
       throw err;
     user.score = score;
@@ -91,27 +91,15 @@ app.post("/submitScore", function(req, res) {
 });
 
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
-//SAVES LOGIN USERS IN MONGODB.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
   var aux = req.body.email;
-  user = req.body.username;
   if (req.body.email = json &&
     bcrypt.compareSync(req.body.password, json[req.body.email])) {
     req.session.user = req.body.email;
     req.session.admin = true;
-    var loginuser = new LoginUser({
-      email: aux,
-      username: req.body.username,
-      password: bcrypt.hashSync(req.body.password),
-      score: 0,
-      date: Date.now()
-    });
-    loginuser.save(function(err, doc) {
-      if (err) throw err; 
-      console.log('User saved successfully!');
-    });
     res.redirect('/game')
+
   } else {
       res.redirect('/login')
   }
@@ -123,7 +111,20 @@ app.post('/register', function(req, res) {
   obj[req.body.email] = bcrypt.hashSync(req.body.password);
   fs.writeFile('./users.json', JSON.stringify(obj, "", 4), function(err) {
     console.log(err);
-  })
+  });
+  loggedInUser = req.body.username;
+  // Writting in super mongodb
+  var loginuser = new LoginUser({
+    email: req.body.email,
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password),
+    score: 0,
+    date: Date.now()
+  });
+  loginuser.save(function(err, doc) {
+    if (err) throw err; 
+    console.log('User saved successfully!');
+  });
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
