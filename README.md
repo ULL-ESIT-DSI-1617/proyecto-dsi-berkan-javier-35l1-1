@@ -8,6 +8,9 @@ La app consta de dos pantallas: una primera en la que los usuarios deben hacer l
 
 ## Autores
 
+[Berkan](https://berkanrhdz.github.io)
+[Javier](https://javiergonher.github.io/)
+
 ## Despliegue y Enlaces
 
 ## Forma de uso local
