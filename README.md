@@ -12,6 +12,7 @@ La app consta de dos pantallas: una primera en la que los usuarios deben hacer l
 [Javier](https://javiergonher.github.io/)
 
 ## Despliegue y Enlaces
+[Enlace documentación - ghpages](https://ull-esit-dsi-1617.github.io/proyecto-dsi-berkan-javier-35l1-1/)
 
 ## Forma de uso local
 
