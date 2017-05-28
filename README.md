@@ -24,7 +24,10 @@ Npm es el manejador de paquetes por defecto para Node.js, un entorno de ejecuci�
 
 La mejor manera de gestionar los paquetes instalados localmente NPM es crear un package.json y eso es lo que se ha hecho, un package.json con la información del paquete, las dependencias necesarias para la ejecución de la app y algunas tareas/scripts para ejecutar pruebas.
 
-### NODE
+### NODEJS
+Node es un intérprete Javascript del lado del servidor que cambia la noción de cómo debería trabajar un servidor. Su meta es permitir a un programador construir aplicaciones altamente escalables y escribir código que maneje decenas de miles de conexiones simultáneas en una sólo una máquina física.
+
+Aquí ha sido utilizada de la manera explicada, siendo el método para decirle al servidor como debe operar tras un login, un registro, un cambio de contraseña, etc. Además gestiona la base de datos a través del middleware mongoose.
 
 ### MONGODB
 
