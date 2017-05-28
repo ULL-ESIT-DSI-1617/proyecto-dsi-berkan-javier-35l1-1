@@ -20,6 +20,9 @@ La app consta de dos pantallas: una primera en la que los usuarios deben hacer l
 Como se dijo anteriormente, para el desarrollo de la aplicación se han usado diversar tecnologías que serán explicadas a continuación y se dirá para que han sido utilizadas. 
 
 ### NPM 
+Npm es el manejador de paquetes por defecto para Node.js, un entorno de ejecución para JavaScript.
+
+La mejor manera de gestionar los paquetes instalados localmente NPM es crear un package.json y eso es lo que se ha hecho, un package.json con la información del paquete, las dependencias necesarias para la ejecución de la app y algunas tareas/scripts para ejecutar pruebas.
 
 ### NODE
 
