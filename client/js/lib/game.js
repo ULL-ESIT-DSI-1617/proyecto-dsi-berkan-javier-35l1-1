@@ -37,6 +37,20 @@
       }
     });
   };
+
+  var getScores = function() {
+    $.post("http://localhost:8090/highScores", null, function(data) {
+      if (!data) {
+        console.log("Server Comunication Error");
+        return;
+      }
+      if (data.error) {
+        console.log("Server Error: " + data.error);
+        return;
+      }
+      var aux = data.dbScores;
+    });
+  }
   /**
    * Wrap requestAnimationFrame
    * @param {} frameFunc 
@@ -91,6 +105,7 @@
    * @param {Class} Display - Display mode
    */
   function runGame(plans, Display) {
+    getScores();
     function startLevel(n) {
       runLevel(new Level(plans[n]), Display, function(status) {
         if (status == "lost") {
