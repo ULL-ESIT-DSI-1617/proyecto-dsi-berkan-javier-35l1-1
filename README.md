@@ -17,6 +17,7 @@ La app consta de dos pantallas: una primera en la que los usuarios deben hacer l
 ## Forma de uso local
 
 ## Tecnologías
+Como se dijo anteriormente, para el desarrollo de la aplicación se han usado diversar tecnologías que serán explicadas a continuación y se dirá para que han sido utilizadas. 
 
 ### NPM 
 
@@ -33,7 +34,7 @@ La app consta de dos pantallas: una primera en la que los usuarios deben hacer l
 ### TRAVIS
 
 ### JSDOC
+JSDoc es una aplicación realizada en Perl que nos genera la documentación de nuestros scripts Javascript de forma automática. Basado en el conocido javadoc, obtiene los comentarios de documentación (/** .. */) para obtener la informacion sobre las funciones.
 
-
-
+Esta tecnología ha sido utilizada para documentar las distintas clases que conforman el juego javascript desarrollado para la app web.
 
