@@ -71,6 +71,7 @@ var auth = function(req, res, next) {
 };
 
 // -------------SCORE------------
+// SENDING SCORE
 app.post("/submitScore", function(req, res) {
   if(!req.body.score) {
     res.send({error:"No score value was submitted"});
@@ -90,6 +91,26 @@ app.post("/submitScore", function(req, res) {
   });
 });
 
+// GETTING SCORE
+app.post("/highScores", function(req, res) {
+  LoginUser.find({},function(err, result) {
+    if (err) {
+      console.log("Failed to find scores: " + err);
+      res.send({error:"Internal Server Error"});
+      return;
+    }
+    console.log("HOLA: " + result.username);
+    var dbScores = [];
+    for(var i = 0; i < 3; i++){
+      dbScores.push(result[i].score);
+    }
+    dbScores.sort(function(a, b) { return b - a});
+    for(var i = 0; i < result.length; i++){
+      console.log("score: ", dbScores[i]);
+    }
+    res.send({success: true, dbScores: dbScores});
+  });
+});
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
