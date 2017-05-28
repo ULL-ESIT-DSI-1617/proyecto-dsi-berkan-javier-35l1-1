@@ -54,8 +54,16 @@ Node es un intérprete Javascript del lado del servidor que cambia la noción de
 Aquí ha sido utilizada de la manera explicada, siendo el método para decirle al servidor como debe operar tras un login, un registro, un cambio de contraseña, etc. Además gestiona la base de datos a través del middleware mongoose.
 
 ### MONGODB
+MongoDB es una base de datos relacional que guarda datos en forma de documentos BSON, donde los BSON son una representación binaria de JSON con información adicional de tipo. 
+
+Para realizar la conexión de mongo en node se necesita de la librería mongoose la cuál es instalada mediante npm.
+
+Mongo es utilizado en nuestro proyecto para guardar los usuarios registrados y consultarlos cuando se realiza un login para ver si éste ya se encuentra registrado o no. Además de para esto, también es utilizado para guardar las puntuaciones de cada jugador cuando acaba una partida y mostrar aquellas que se encuentran en el top 10.
 
 ### HTML - CSS - JAVASCRIPT
+Para el diseño de la app se ha usado el lenguaje de marcado 'html' y su hoja de estilo 'css'. La parte principal del cliente está basado en ambos, siendo esta un diseño totalmente propio y ayudado por el uso de funciones javascript para el control de acciones y prevención de algunos errores.
+
+Además, el juego en el cual está basada la app web está realizado en javascript, dividido en distintas clases que concretamente se encuentran escritas en EcmaScript6. 
 
 ### MOCHA Y CHAI
 Mocha es un framework de pruebas de JavaScript que se ejecuta en Node.js. Nos da la posibilidad de crear tanto tests síncronos como asíncronos de una forma muy sencilla. 
