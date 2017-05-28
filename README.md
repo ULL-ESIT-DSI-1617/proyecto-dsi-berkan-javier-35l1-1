@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1.svg?token=zsg7W1SNzKPhkVpKaLTH&branch=master)](https://travis-ci.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1)
+[![Github Issues](http://img.shields.io/github/issues/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1.svg)](https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1.svg?style=flat-square/cdnjs.svg)](https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1/graphs/contributors)
 
 # CASIANO'S ADVENTURES
 
@@ -7,7 +9,6 @@ Aplicación/Juego web desarrollado como proyecto final de la asignatura Desarrol
 La app consta de dos pantallas: una primera en la que los usuarios deben hacer login para acceder al juego pudiendo también registrarse o cambiar su contraseña; y una segunda en la que se puede iniciar una nueva partida, cerrar sesión o ver las mejores puntuaciones globales.
 
 ## Autores
-
 [Berkan Reyes Hernández](https://berkanrhdz.github.io)
 
 [Javier Antonio González Hernández](https://javiergonher.github.io/)
@@ -16,6 +17,28 @@ La app consta de dos pantallas: una primera en la que los usuarios deben hacer l
 [Enlace documentación - ghpages](https://ull-esit-dsi-1617.github.io/proyecto-dsi-berkan-javier-35l1-1/)
 
 ## Forma de uso local
+Para el uso local debemos ejecutar en primer lugar, tras haber descargado el proyecto y situarnos en la raíz de esta carpeta, el comando:
+```bash
+$ npm install
+```
+para instalar las dependencias necesarias para ejecutar la app.
+
+A continuación, en una shell debemos correr la base de datos mongodb.
+
+```bash
+$ mongod
+```
+
+Y por último, en otra shell poner en marcha el servior con:
+
+```bash
+$ node server.js
+```
+y acceder a la direcctión:
+
+```
+http://localhost:8090/
+```
 
 ## Tecnologías
 Como se dijo anteriormente, para el desarrollo de la aplicación se han usado diversar tecnologías que serán explicadas a continuación y se dirá para que han sido utilizadas. 
