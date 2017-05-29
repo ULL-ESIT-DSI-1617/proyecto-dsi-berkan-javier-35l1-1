@@ -99,13 +99,12 @@ app.post("/highScores", function(req, res) {
       res.send({error:"Internal Server Error"});
       return;
     }
-    console.log("HOLA: " + result.username);
     var dbScores = [];
     for(var i = 0; i < 3; i++){
       dbScores.push(result[i].score);
     }
     dbScores.sort(function(a, b) { return b - a});
-    for(var i = 0; i < result.length; i++){
+    for(var i = 0; i < dbScores.length; i++){
       console.log("score: ", dbScores[i]);
     }
     res.send({success: true, dbScores: dbScores});
@@ -119,6 +118,11 @@ app.post('/login', function(req, res) {
     bcrypt.compareSync(req.body.password, json[req.body.email])) {
     req.session.user = req.body.email;
     req.session.admin = true;
+    LoginUser.findOne({ email: aux }, function(err, user) {
+      if (err) 
+        throw err;
+      loggedInUser = user.username;
+    });
     res.redirect('/game')
 
   } else {
