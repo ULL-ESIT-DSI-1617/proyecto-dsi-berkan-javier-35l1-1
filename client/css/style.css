@@ -86,6 +86,15 @@ canvas {
   font-size: 20px;
 }
 
+.scores table, th, td {
+  position: relative;
+  left: 780px;
+  bottom: 100px;
+  font-size: 30px;
+  text-align: center;
+  padding: 10px;
+}
+
 .screen-div {
   position: relative;
   top: 200px;
