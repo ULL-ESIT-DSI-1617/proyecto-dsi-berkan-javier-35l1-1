@@ -48,7 +48,19 @@
         console.log("Server Error: " + data.error);
         return;
       }
-      var aux = data.dbScores;
+      // writting scores in the score table.
+      var firstUser = document.getElementById("first-user");
+      var firstScore = document.getElementById("first-score");
+      var secondUser = document.getElementById("second-user");
+      var secondScore = document.getElementById("second-score");
+      var thirdUser = document.getElementById("third-user");
+      var thirdScore = document.getElementById("third-score");
+      firstUser.innerHTML = data.dbUsers[0];
+      firstScore.innerHTML = data.dbScores[0];
+      secondUser.innerHTML = data.dbUsers[1];
+      secondScore.innerHTML = data.dbScores[1];
+      thirdUser.innerHTML = data.dbUsers[2];
+      thirdScore.innerHTML = data.dbScores[2];
     });
   }
   /**
