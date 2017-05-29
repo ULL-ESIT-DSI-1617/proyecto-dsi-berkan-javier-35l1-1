@@ -100,14 +100,16 @@ app.post("/highScores", function(req, res) {
       return;
     }
     var dbScores = [];
-    for(var i = 0; i < 3; i++){
+    var dbUsers = [];
+    for(var i = 0; i < 3; i++) {
+      dbUsers.push(result[i].username);
       dbScores.push(result[i].score);
     }
     dbScores.sort(function(a, b) { return b - a});
     for(var i = 0; i < dbScores.length; i++){
       console.log("score: ", dbScores[i]);
     }
-    res.send({success: true, dbScores: dbScores});
+    res.send({success: true, dbUsers: dbUsers, dbScores: dbScores});
   });
 });
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
