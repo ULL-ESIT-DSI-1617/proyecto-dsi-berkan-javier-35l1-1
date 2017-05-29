@@ -137,20 +137,30 @@ app.post('/register', function(req, res) {
   fs.writeFile('./users.json', JSON.stringify(obj, "", 4), function(err) {
     console.log(err);
   });
-  loggedInUser = req.body.username;
-  // Writting in super mongodb
-  var loginuser = new LoginUser({
-    email: req.body.email,
-    username: req.body.username,
-    password: bcrypt.hashSync(req.body.password),
-    score: 0,
-    date: Date.now()
+  // check if the user already exists
+  LoginUser.findOne( { $or: [ { email: req.body.email }, { username: req.body.username } ] }, function(err, user){
+    if(err) {
+      throw err;
+    }
+    if(user == null) {
+      loggedInUser = req.body.username;
+      // Writting in super mongodb
+      var loginuser = new LoginUser({
+        email: req.body.email,
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password),
+        score: 0,
+        date: Date.now()
+      });
+      loginuser.save(function(err, doc) {
+        if (err) throw err; 
+        console.log('User saved successfully!');
+      });
+      res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
+    } else {
+      res.send('<p>User or email already exists</p>');;
+    }
   });
-  loginuser.save(function(err, doc) {
-    if (err) throw err; 
-    console.log('User saved successfully!');
-  });
-  res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
 //CHANGES PASSWORD IN USERS.JSON FILE.
@@ -178,6 +188,10 @@ app.get('/game',
 );
 
 app.get('/login', function(req, res) {
+  res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
+});
+
+app.get('/register', function(req, res) {
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
