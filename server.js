@@ -12,6 +12,8 @@ var path = require('path');
 var util = require("util");
 var fs = require("fs");
 
+var loggedInUser;
+
 //CONNECTS MONGODB.
 mongoose.connect('mongodb://localhost/loginusers', (err) => {
   if (err) {
@@ -39,6 +41,10 @@ var LoginUsersSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  score: {
+    type: Number,
+    required: true
   }
 });
 var LoginUser = mongoose.model('LoginUser', LoginUsersSchema);
@@ -64,8 +70,47 @@ var auth = function(req, res, next) {
     res.redirect('/login');
 };
 
+// -------------SCORE------------
+// SENDING SCORE
+app.post("/submitScore", function(req, res) {
+  if(!req.body.score) {
+    res.send({error:"No score value was submitted"});
+    return;
+  }
+  var score = parseInt(req.body.score);
+  LoginUser.findOne({ username: loggedInUser }, function(err, user) {
+    if (err) 
+      throw err;
+    user.score = score;
+    // save the user
+    user.save(function(err) {
+      if (err) throw err;
+      console.log("User successfully updated!");
+    });
+    res.send({success:true});
+  });
+});
+
+// GETTING SCORE
+app.post("/highScores", function(req, res) {
+  LoginUser.find({},function(err, result) {
+    if (err) {
+      console.log("Failed to find scores: " + err);
+      res.send({error:"Internal Server Error"});
+      return;
+    }
+    var dbScores = [];
+    for(var i = 0; i < 3; i++){
+      dbScores.push(result[i].score);
+    }
+    dbScores.sort(function(a, b) { return b - a});
+    for(var i = 0; i < dbScores.length; i++){
+      console.log("score: ", dbScores[i]);
+    }
+    res.send({success: true, dbScores: dbScores});
+  });
+});
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
-//SAVES LOGIN USERS IN MONGODB.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
   var aux = req.body.email;
@@ -73,19 +118,15 @@ app.post('/login', function(req, res) {
     bcrypt.compareSync(req.body.password, json[req.body.email])) {
     req.session.user = req.body.email;
     req.session.admin = true;
-    var loginuser = new LoginUser({
-      email: aux,
-      username: req.body.username,
-      password: bcrypt.hashSync(req.body.password),
-      date: Date.now()
-    });
-    loginuser.save(function(err, doc) {
-      if (err) throw err; 
-      console.log('User saved successfully!');
+    LoginUser.findOne({ email: aux }, function(err, user) {
+      if (err) 
+        throw err;
+      loggedInUser = user.username;
     });
     res.redirect('/game')
+
   } else {
-    res.redirect('/login')
+      res.redirect('/login')
   }
 });
 
@@ -95,7 +136,20 @@ app.post('/register', function(req, res) {
   obj[req.body.email] = bcrypt.hashSync(req.body.password);
   fs.writeFile('./users.json', JSON.stringify(obj, "", 4), function(err) {
     console.log(err);
-  })
+  });
+  loggedInUser = req.body.username;
+  // Writting in super mongodb
+  var loginuser = new LoginUser({
+    email: req.body.email,
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password),
+    score: 0,
+    date: Date.now()
+  });
+  loginuser.save(function(err, doc) {
+    if (err) throw err; 
+    console.log('User saved successfully!');
+  });
   res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
 });
 
