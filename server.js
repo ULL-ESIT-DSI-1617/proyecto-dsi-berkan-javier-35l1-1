@@ -93,7 +93,7 @@ app.post("/submitScore", function(req, res) {
 
 // GETTING SCORE
 app.post("/highScores", function(req, res) {
-  LoginUser.find({},function(err, result) {
+  LoginUser.find({ $query: {}, $orderby: { score: -1}}, function(err, result) {
     if (err) {
       console.log("Failed to find scores: " + err);
       res.send({error:"Internal Server Error"});
@@ -104,10 +104,6 @@ app.post("/highScores", function(req, res) {
     for(var i = 0; i < 3; i++) {
       dbUsers.push(result[i].username);
       dbScores.push(result[i].score);
-    }
-    dbScores.sort(function(a, b) { return b - a});
-    for(var i = 0; i < dbScores.length; i++){
-      console.log("score: ", dbScores[i]);
     }
     res.send({success: true, dbUsers: dbUsers, dbScores: dbScores});
   });
