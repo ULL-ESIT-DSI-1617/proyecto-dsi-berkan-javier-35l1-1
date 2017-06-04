@@ -46,7 +46,13 @@ var LoginUsersSchema = new Schema({
   score: {
     type: Number,
     required: true
+  },
+  gameSaved: {
+    currentScore: Number,
+    lives: Number,
+    level: Number
   }
+
 });
 var LoginUser = mongoose.model('LoginUser', LoginUsersSchema);
 
@@ -109,6 +115,31 @@ app.post("/highScores", function(req, res) {
     res.send({success: true, dbUsers: dbUsers, dbScores: dbScores});
   });
 });
+
+// Saving the game
+app.post("/saveGame", function(req, res) {
+  if(!req.body.score || !req.body.level || !req.body.lives) {
+    res.send({error:"Error to save the game, information is missing"});
+    return;
+  }
+  var score = parseInt(req.body.score);
+  var level = parseInt(req.body.level);
+  var lives = parseInt(req.body.lives);
+  LoginUser.findOne({ username: loggedInUser }, function(err, user) {
+    if (err) 
+      throw err;
+    user.gameSaved["currentScore"] = score;
+    user.gameSaved["lives"] = lives;
+    user.gameSaved["level"] = level;
+    // save the user
+    user.save(function(err) {
+      if (err) throw err;
+      console.log("User successfully updated!");
+    });
+    res.send({success:true});
+  });
+});
+
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
@@ -149,7 +180,8 @@ app.post('/register', function(req, res) {
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password),
         score: 0,
-        date: Date.now()
+        date: Date.now(),
+        gameSaved: {currentScore: 0, lives: 3, level: 0}
       });
       loginuser.save(function(err, doc) {
         if (err) throw err; 
