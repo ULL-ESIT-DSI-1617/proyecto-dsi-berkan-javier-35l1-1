@@ -71,9 +71,11 @@ class Player {
 
         var otherActor = level.actorAt(this);
         if (otherActor)
-            if(level.playerTouched(otherActor.type, otherActor))
+            if(level.playerTouched(otherActor.type, otherActor)) {
                 score+=50;
-                
+                submitScore(score);
+                getScores();
+            }
         // Losing animation
         if (level.status == "lost") {
             this.pos.y += step;
