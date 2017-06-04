@@ -114,7 +114,12 @@ app.post("/highScores", function(req, res) {
     }
     var dbScores = [];
     var dbUsers = [];
-    for(var i = 0; i < 3; i++) {
+    var size;
+    if (result.length < 3)
+      size = result.length;
+    else
+      size = 3;
+    for(var i = 0; i < size; i++) {
       dbUsers.push(result[i].username);
       dbScores.push(result[i].score);
     }
