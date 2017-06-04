@@ -52,10 +52,10 @@
           </li>
 
           <li class="page-scroll">
-            <a href="#" onclick="runGame(GAME_LEVELS, CanvasDisplay);">Nueva Partida</a>
+            <a href="#" onclick="runGame(GAME_LEVELS, CanvasDisplay, false);">Nueva Partida</a>
           </li>
           <li class="page-scroll">
-            <a href="#">Puntuaciones</a>
+            <a href="#" onclick="runGame(GAME_LEVELS, CanvasDisplay, true);">Cargar Partida</a>
           </li>
           <li class="page-scroll" onclick="myForm.submit();">
             <form id="myForm" action="/logout" method="get">  
