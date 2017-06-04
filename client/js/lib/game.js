@@ -118,6 +118,8 @@
    */
   function runGame(plans, Display) {
     getScores();
+    score = 0;
+    lives = 3;
     function startLevel(n) {
       runLevel(new Level(plans[n]), Display, function(status) {
         if (status == "lost") {
