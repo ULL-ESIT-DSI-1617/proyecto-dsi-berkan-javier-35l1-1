@@ -201,7 +201,12 @@ app.post('/register', function(req, res) {
       });
       res.sendfile(path.join(__dirname + '/client/login-register-pass.html'))
     } else {
-      res.send('<p>User or email already exists</p>');;
+      if (user.email == req.body.email)
+        res.send('<p>Email already exists</p>');
+      else if(user.username == req.body.username)
+        res.send('<p>Username already exists</p>');
+      else 
+        res.send('Internal Server Error');
     }
   });
 });
