@@ -1,5 +1,6 @@
 (function(exports) {
   var lives = 3;
+  var level = 0;
   // TRACKING KEYS
   /**
    * Tracks the current position of the keys
@@ -65,7 +66,7 @@
     });
   }
 
-  var saveLevel = function(cScore, cLevel, cLives) {
+  var saveGame = function(cScore, cLevel, cLives) {
     $.post("http://localhost:8090/saveGame", {score: cScore, level: cLevel, lives: cLives}, function(data) {
       if(!data) {
         console.log("Server Communication Error");
@@ -77,6 +78,23 @@
         return;
       }
     });
+  }
+
+  var loadGame = function(startLevel) { 
+      $.post("http://localhost:8090/loadGame", null, function(data) {
+        if (!data) {
+          console.log("Server Comunication Error");
+          return;
+        }
+        if (data.error) {
+          console.log("Server Error: " + data.error);
+          return;
+        }
+        score = data.saveFile["currentScore"];
+        lives = data.saveFile["lives"];
+        level = data.saveFile["level"];
+        startLevel(level);
+      });
   }
   /**
    * Wrap requestAnimationFrame
@@ -131,10 +149,8 @@
    * @param {Vector} plans - Set of levels 
    * @param {Class} Display - Display mode
    */
-  function runGame(plans, Display) {
+  function runGame(plans, Display, resume) {
     getScores();
-    score = 0;
-    lives = 3;
     function startLevel(n) {
       levelScore = 0;
       runLevel(new Level(plans[n]), Display, function(status) {
@@ -161,7 +177,7 @@
           }
           startLevel(n);
         } else if (n < plans.length - 1) {
-          saveLevel(score, n + 1, lives);
+          saveGame(score, n + 1, lives);
           startLevel(n + 1);
         }
         else
@@ -174,10 +190,17 @@
           gameover.appendChild(textgameover);
       });
     }
-    startLevel(0);
+    if(resume)
+      loadGame(startLevel)
+    else {
+      score = 0;
+      lives = 3;
+      startLevel(0);
+    }
   }
 
   exports.runGame = runGame;
   exports.submitScore = submitScore;
   exports.getScores = getScores;
+  exports.loadGame = loadGame;
 })(self);
