@@ -140,6 +140,18 @@ app.post("/saveGame", function(req, res) {
   });
 });
 
+// Load the game
+app.post("/loadGame", function(req, res) {
+  LoginUser.findOne({ username: loggedInUser }, function(err, saveFile) {
+    if (err) {
+      console.log("Failed to find the saved file: " + err);
+      res.send({error:"Internal Server Error"});
+      return;
+    }
+    res.send({success: true, saveFile: saveFile.gameSaved});
+  });
+});
+
 //COMPARES POST VARIABLES USING bodyParser WITH REGISTERED USERS TO KNOW IF THE LOG IS CORRECT. IF ITS TRUE, CHANGES SESSION VARIABLES.
 app.post('/login', function(req, res) {
   var json = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
