@@ -122,8 +122,10 @@
     score = 0;
     lives = 3;
     function startLevel(n) {
+      levelScore = 0;
       runLevel(new Level(plans[n]), Display, function(status) {
         if (status == "lost") {
+          score -= levelScore;
           if (lives === 0) {
             n = 0;
             lives = 3;

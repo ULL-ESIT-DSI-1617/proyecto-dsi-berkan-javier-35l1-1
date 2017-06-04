@@ -1,4 +1,5 @@
 var score = 0;
+var levelScore = 0;
 
 (function(exports) {
 /**
@@ -73,6 +74,7 @@ class Player {
         if (otherActor)
             if(level.playerTouched(otherActor.type, otherActor)) {
                 score+=50;
+                levelScore+=50;
                 submitScore(score);
             }
         // Losing animation
