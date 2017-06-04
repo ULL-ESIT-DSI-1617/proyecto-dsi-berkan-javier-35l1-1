@@ -64,6 +64,20 @@
       thirdScore.innerHTML = data.dbScores[2];
     });
   }
+
+  var saveLevel = function(cScore, cLevel, cLives) {
+    $.post("http://localhost:8090/saveGame", {score: cScore, level: cLevel, lives: cLives}, function(data) {
+      if(!data) {
+        console.log("Server Communication Error");
+        return;
+      }
+      if(data.error)
+      {
+        console.log("Server Error: " + data.error);
+        return;
+      }
+    });
+  }
   /**
    * Wrap requestAnimationFrame
    * @param {} frameFunc 
@@ -142,13 +156,14 @@
             insertcoin.appendChild(textinsertcoin);
             screendiv.appendChild(gameover);
             gameover.appendChild(insertcoin);
-            submitScore(score);
             score = 0;
             return;
           }
           startLevel(n);
-        } else if (n < plans.length - 1)
+        } else if (n < plans.length - 1) {
+          saveLevel(score, n + 1, lives);
           startLevel(n + 1);
+        }
         else
           var elem = document.getElementById('canvasgame');
           if (elem) elem.remove();
