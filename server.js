@@ -88,13 +88,19 @@ app.post("/submitScore", function(req, res) {
   LoginUser.findOne({ username: loggedInUser }, function(err, user) {
     if (err) 
       throw err;
-    user.score = score;
-    // save the user
-    user.save(function(err) {
-      if (err) throw err;
-      console.log("User successfully updated!");
-    });
-    res.send({success:true});
+    console.log("score: " + score + " user.score: " + user.score);
+    if (score > user.score) {
+      user.score = score;
+      // save the user
+      user.save(function(err) {
+        if (err) throw err;
+        console.log("User successfully updated!");
+      });
+      res.send({success:true});
+    }
+    else {
+      console.log("Score is minor than the current saved score");
+    }
   });
 });
 
