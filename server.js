@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 var bcrypt = require("bcrypt-nodejs");
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+mongoose.Promise = global.Promise;
 var path = require('path');
 var util = require("util");
 var fs = require("fs");
