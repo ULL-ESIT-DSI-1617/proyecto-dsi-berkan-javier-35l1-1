@@ -158,4 +158,6 @@
   }
 
   exports.runGame = runGame;
+  exports.submitScore = submitScore;
+  exports.getScores = getScores;
 })(self);
