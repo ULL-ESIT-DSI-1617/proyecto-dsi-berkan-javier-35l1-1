@@ -74,7 +74,6 @@ class Player {
             if(level.playerTouched(otherActor.type, otherActor)) {
                 score+=50;
                 submitScore(score);
-                getScores();
             }
         // Losing animation
         if (level.status == "lost") {

@@ -35,6 +35,7 @@
         console.log("Server Error: " + data.error);
         return;
       }
+      getScores();
     });
   };
 
