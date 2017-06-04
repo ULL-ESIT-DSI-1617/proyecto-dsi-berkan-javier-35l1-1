@@ -59,10 +59,14 @@
       var thirdScore = document.getElementById("third-score");
       firstUser.innerHTML = data.dbUsers[0];
       firstScore.innerHTML = data.dbScores[0];
-      secondUser.innerHTML = data.dbUsers[1];
-      secondScore.innerHTML = data.dbScores[1];
-      thirdUser.innerHTML = data.dbUsers[2];
-      thirdScore.innerHTML = data.dbScores[2];
+      if(data.dbUsers[1] != undefined) {
+        secondUser.innerHTML = data.dbUsers[1];
+        secondScore.innerHTML = data.dbScores[1];
+      }
+      if(data.dbUsers[2] != undefined) {
+        thirdUser.innerHTML = data.dbUsers[2];
+        thirdScore.innerHTML = data.dbScores[2];
+      }
     });
   }
 
