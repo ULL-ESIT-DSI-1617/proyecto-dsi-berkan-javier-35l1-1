@@ -2,11 +2,14 @@
 [![Github Issues](http://img.shields.io/github/issues/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1.svg)](https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1/issues)
 [![GitHub contributors](https://img.shields.io/github/contributors/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1.svg?style=flat-square/cdnjs.svg)](https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-berkan-javier-35l1-1/graphs/contributors)
 
-# CASIANO'S ADVENTURES
+# CHUCHU'S ADVENTURES
 
 Aplicación/Juego web desarrollado como proyecto final de la asignatura Desarrollo de Sistemas Informáticos. Para esto han sido usadas varias de las tecnologías vistas y explicadas a lo largo del curso.
 
-La app consta de dos pantallas: una primera en la que los usuarios deben hacer login para acceder al juego pudiendo también registrarse o cambiar su contraseña; y una segunda en la que se puede iniciar una nueva partida, cerrar sesión o ver las mejores puntuaciones globales.
+## Funcionalidad 
+La app consta de dos pantallas:
+* Una primera en la que los usuarios deben hacer login para acceder al juego. Para ello deben primero haberse registrado correctamente con un correo que no haya sido utilizado con anterioridad. Además de esto también podrán cambiar su contraseña una vez registrados si no se encuentran agusto con ella. El registro y el login quedará guardado en la base de datos mongodb para posterior tratamiento.
+* Una segunda en la que se puede iniciar una nueva partida, continuar una guardada anteriormente, ver las mejores puntuaciones globales o cerrar la sesión activa.
 
 ## Autores
 ![logo-github](http://bigfatcorki.de/wp-content/themes/CreativePortfolioResFree/images/flickr-icon.png) [Berkan Reyes Hernández](https://berkanrhdz.github.io)
